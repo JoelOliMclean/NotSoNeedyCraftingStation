@@ -1,0 +1,9 @@
+{
+    "name": "NotSoNeedyCraftingStation",
+    "version_number": "1.0.0",
+    "website_url": "https://github.com/JoelOliMclean/NotSoNeedyCraftingStation",
+    "description": "Makes it so crafting station no longer needs a roof or shelter to be used.",
+    "dependencies": [
+        "denikson-BepInExPack_Valheim-5.4.701"
+    ]
+}
