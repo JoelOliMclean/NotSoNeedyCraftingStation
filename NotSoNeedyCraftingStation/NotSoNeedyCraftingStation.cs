@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NotSoNeedyCraftingStation
 {
-    [BepInPlugin("uk.co.oliapps.valheim.notsoneedycraftingstation", "Not So Needy Crafting Station", "1.1.0")]
+    [BepInPlugin("uk.co.oliapps.valheim.notsoneedycraftingstation", "Not So Needy Crafting Station", "1.1.1")]
     public class NotSoNeedyCraftingStation : BaseUnityPlugin
     {
         private static ConfigEntry<bool> disableWeatherDamageForCraftingStation;
