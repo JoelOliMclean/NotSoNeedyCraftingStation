@@ -5,16 +5,21 @@ using UnityEngine;
 
 namespace NotSoNeedyCraftingStation
 {
-    [BepInPlugin("uk.co.oliapps.valheim.notsoneedycraftingstation", "Not So Needy Crafting Station", "1.1.1")]
+    [BepInPlugin("uk.co.oliapps.valheim.notsoneedycraftingstation", "Not So Needy Crafting Station", "1.1.2")]
     public class NotSoNeedyCraftingStation : BaseUnityPlugin
     {
+        private static ConfigEntry<bool> modEnabled;
         private static ConfigEntry<bool> disableWeatherDamageForCraftingStation;
 
         public void Awake()
         {
-            disableWeatherDamageForCraftingStation = Config.Bind<bool>("General", "Disable Rain Damage", false, "Disables rain damage for the crafting station");
+            modEnabled = Config.Bind("General", "Mod enabled", true, "Sets whether this mod is enabled");
+            disableWeatherDamageForCraftingStation = Config.Bind("General", "Disable Rain Damage", false, "Disables rain damage for the crafting station");
             Config.Save();
-            Harmony.CreateAndPatchAll(typeof(NotSoNeedyCraftingStation), null);
+            if (modEnabled.Value)
+            {
+                Harmony.CreateAndPatchAll(typeof(NotSoNeedyCraftingStation), null);
+            }
         }
         
         [HarmonyPatch(typeof(CraftingStation), "Start")]
@@ -26,7 +31,6 @@ namespace NotSoNeedyCraftingStation
                 WearNTear wearNTear = __instance.GetComponent<WearNTear>();
                 if (wearNTear)
                 {
-                    ZLog.Log("[Not So Needy Crafting Station] Disabling rain damage");
                     wearNTear.m_noRoofWear = false;
                 }
             }
